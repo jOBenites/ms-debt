@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DebtEventProducer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ms-debt</a> &gt; <a href="index.source.html" class="el_package">com.bank.msdebt.event</a> &gt; <span class="el_source">DebtEventProducer.java</span></div><h1>DebtEventProducer.java</h1><pre class="source lang-java linenums">package com.bank.msdebt.event;
+
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.util.Map;
+
+/**
+ * Productor de eventos para deuda vencida.
+ */
+@Component
+@RequiredArgsConstructor
+public class DebtEventProducer {
+
+<span class="fc" id="L19">    private static final Logger log = LoggerFactory.getLogger(DebtEventProducer.class);</span>
+    private static final String DEBT_OVERDUE_TOPIC = &quot;bank.debt.overdue-detected&quot;;
+    private static final String DEBT_SETTLED_TOPIC = &quot;bank.debt.settled&quot;;
+
+    private final KafkaTemplate&lt;String, Object&gt; kafkaTemplate;
+
+    /**
+     * Publica evento de deuda vencida.
+     *
+     * @param customerId identificador del cliente
+     * @param creditProductId identificador del producto
+     */
+    public void publishOverdueDetected(String customerId, String creditProductId) {
+<span class="nc" id="L32">        Map&lt;String, Object&gt; payload = Map.of(</span>
+                &quot;customerId&quot;, customerId,
+                &quot;creditProductId&quot;, creditProductId,
+<span class="nc" id="L35">                &quot;occurredAt&quot;, LocalDateTime.now()</span>
+        );
+<span class="nc" id="L37">        kafkaTemplate.send(DEBT_OVERDUE_TOPIC, customerId, payload);</span>
+<span class="nc" id="L38">        log.info(&quot;Evento bank.debt.overdue-detected publicado para cliente {}&quot;, customerId);</span>
+<span class="nc" id="L39">    }</span>
+
+    /**
+     * Publica evento de deuda liquidada.
+     *
+     * @param customerId identificador del cliente
+     * @param creditProductId identificador del producto
+     */
+    public void publishSettled(String customerId, String creditProductId) {
+<span class="nc" id="L48">        Map&lt;String, Object&gt; payload = Map.of(</span>
+                &quot;customerId&quot;, customerId,
+                &quot;creditProductId&quot;, creditProductId,
+<span class="nc" id="L51">                &quot;occurredAt&quot;, LocalDateTime.now()</span>
+        );
+<span class="nc" id="L53">        kafkaTemplate.send(DEBT_SETTLED_TOPIC, customerId, payload);</span>
+<span class="nc" id="L54">        log.info(&quot;Evento bank.debt.settled publicado para cliente {}&quot;, customerId);</span>
+<span class="nc" id="L55">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

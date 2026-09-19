@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.bank.msdebt.service.DebtServiceTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.530 s -- in com.bank.msdebt.service.DebtServiceTest

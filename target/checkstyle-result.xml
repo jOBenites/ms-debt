@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="9.3">
+<file name="C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\controller\DebtController.java">
+</file>
+<file name="C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\dto\DebtStatusRequest.java">
+</file>
+<file name="C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\dto\DebtStatusResponse.java">
+</file>
+<file name="C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\event\DebtEventProducer.java">
+</file>
+<file name="C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\model\DebtStatus.java">
+</file>
+<file name="C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\MsDebtApplication.java">
+</file>
+<file name="C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\repository\DebtStatusRepository.java">
+</file>
+<file name="C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\service\DebtService.java">
+</file>
+</checkstyle>

@@ -1,0 +1,8 @@
+C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\controller\DebtController.java
+C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\dto\DebtStatusRequest.java
+C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\dto\DebtStatusResponse.java
+C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\event\DebtEventProducer.java
+C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\model\DebtStatus.java
+C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\MsDebtApplication.java
+C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\repository\DebtStatusRepository.java
+C:\Workspace\mcs-bank-test\ms-debt\src\main\java\com\bank\msdebt\service\DebtService.java

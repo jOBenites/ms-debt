@@ -1,0 +1,8 @@
+com\bank\msdebt\dto\DebtStatusRequest.class
+com\bank\msdebt\controller\DebtController.class
+com\bank\msdebt\model\DebtStatus.class
+com\bank\msdebt\MsDebtApplication.class
+com\bank\msdebt\event\DebtEventProducer.class
+com\bank\msdebt\repository\DebtStatusRepository.class
+com\bank\msdebt\dto\DebtStatusResponse.class
+com\bank\msdebt\service\DebtService.class

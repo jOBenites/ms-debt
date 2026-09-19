@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DebtController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ms-debt</a> &gt; <a href="index.source.html" class="el_package">com.bank.msdebt.controller</a> &gt; <span class="el_source">DebtController.java</span></div><h1>DebtController.java</h1><pre class="source lang-java linenums">package com.bank.msdebt.controller;
+
+import com.bank.msdebt.dto.DebtStatusRequest;
+import com.bank.msdebt.dto.DebtStatusResponse;
+import com.bank.msdebt.model.DebtStatus;
+import com.bank.msdebt.service.DebtService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
+
+/**
+ * Controlador REST reactivo para la deuda vencida.
+ */
+@RestController
+@RequestMapping(&quot;/debts&quot;)
+@RequiredArgsConstructor
+public class DebtController {
+
+    private final DebtService debtService;
+
+    /**
+     * Marca una deuda como vencida.
+     *
+     * @param request datos de la deuda
+     * @return Mono con estado actualizado
+     */
+    @PostMapping(&quot;/overdue&quot;)
+    public Mono&lt;ResponseEntity&lt;DebtStatusResponse&gt;&gt; markOverdue(@RequestBody DebtStatusRequest request) {
+<span class="nc" id="L36">        return debtService.markOverdue(request.getCustomerId(), request.getCreditProductId())</span>
+<span class="nc" id="L37">                .map(this::toResponse)</span>
+<span class="nc" id="L38">                .map(debt -&gt; ResponseEntity.status(HttpStatus.CREATED).body(debt));</span>
+    }
+
+    /**
+     * Registra la liquidacion de una deuda.
+     *
+     * @param request datos de la deuda
+     * @return Mono con estado actualizado
+     */
+    @PostMapping(&quot;/settle&quot;)
+    public Mono&lt;ResponseEntity&lt;DebtStatusResponse&gt;&gt; settleDebt(@RequestBody DebtStatusRequest request) {
+<span class="nc" id="L49">        return debtService.settleDebt(request.getCustomerId(), request.getCreditProductId())</span>
+<span class="nc" id="L50">                .map(this::toResponse)</span>
+<span class="nc" id="L51">                .map(ResponseEntity::ok);</span>
+    }
+
+    /**
+     * Consulta el estado de una deuda concreta.
+     *
+     * @param customerId cliente
+     * @param creditProductId producto
+     * @return Mono con estado o 404
+     */
+    @GetMapping(&quot;/customers/{customerId}/products/{creditProductId}&quot;)
+    public Mono&lt;ResponseEntity&lt;DebtStatusResponse&gt;&gt; getByCustomerAndProduct(
+            @PathVariable String customerId,
+            @PathVariable String creditProductId) {
+<span class="nc" id="L65">        return debtService.findByCustomerAndProduct(customerId, creditProductId)</span>
+<span class="nc" id="L66">                .map(this::toResponse)</span>
+<span class="nc" id="L67">                .map(ResponseEntity::ok)</span>
+<span class="nc" id="L68">                .defaultIfEmpty(ResponseEntity.notFound().build());</span>
+    }
+
+    private DebtStatusResponse toResponse(DebtStatus debtStatus) {
+<span class="nc" id="L72">        DebtStatusResponse response = new DebtStatusResponse();</span>
+<span class="nc" id="L73">        response.setId(debtStatus.getId());</span>
+<span class="nc" id="L74">        response.setCustomerId(debtStatus.getCustomerId());</span>
+<span class="nc" id="L75">        response.setCreditProductId(debtStatus.getCreditProductId());</span>
+<span class="nc" id="L76">        response.setStatus(debtStatus.getStatus());</span>
+<span class="nc" id="L77">        return response;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

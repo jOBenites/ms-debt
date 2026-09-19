@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+ms-debt,com.bank.msdebt.model,DebtStatus,0,12,0,0,0,5,0,1,0,1
+ms-debt,com.bank.msdebt,MsDebtApplication,8,0,0,0,3,0,2,0,2,0
+ms-debt,com.bank.msdebt.event,DebtEventProducer,40,4,0,0,10,1,2,1,2,1
+ms-debt,com.bank.msdebt.service,DebtService,30,106,8,8,5,18,9,7,1,7
+ms-debt,com.bank.msdebt.controller,DebtController,67,0,0,0,16,0,5,0,5,0
+ms-debt,com.bank.msdebt.dto,DebtStatusRequest,3,0,0,0,1,0,1,0,1,0
+ms-debt,com.bank.msdebt.dto,DebtStatusResponse,3,0,0,0,1,0,1,0,1,0

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DebtStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ms-debt</a> &gt; <a href="index.source.html" class="el_package">com.bank.msdebt.model</a> &gt; <span class="el_source">DebtStatus.java</span></div><h1>DebtStatus.java</h1><pre class="source lang-java linenums">package com.bank.msdebt.model;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
+
+/**
+ * Estado de deuda vencida para un producto de credito concreto.
+ */
+@Getter
+@Setter
+@NoArgsConstructor
+@Document(collection = &quot;debt_status&quot;)
+public class DebtStatus {
+
+    /** Estado de deuda vigente. */
+    public static final String STATUS_OVERDUE = &quot;OVERDUE&quot;;
+    /** Estado resuelto. */
+    public static final String STATUS_SETTLED = &quot;SETTLED&quot;;
+
+    @Id
+    private String id;
+
+    @Indexed
+    private String customerId;
+
+    @Indexed
+    private String creditProductId;
+
+    private String status;
+
+    @CreatedDate
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+
+    /**
+     * Constructor.
+     *
+     * @param customerId identificador del cliente
+     * @param creditProductId identificador del producto de credito
+     * @param status estado inicial
+     */
+<span class="fc" id="L52">    public DebtStatus(String customerId, String creditProductId, String status) {</span>
+<span class="fc" id="L53">        this.customerId = customerId;</span>
+<span class="fc" id="L54">        this.creditProductId = creditProductId;</span>
+<span class="fc" id="L55">        this.status = status;</span>
+<span class="fc" id="L56">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
